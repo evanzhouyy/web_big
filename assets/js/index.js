@@ -2,16 +2,16 @@ $(function () {
     // 调用用户基本信息
     getUserInfo()
 
-    var layer=layui.layer
+    var layer = layui.layer
     $('#btnLogout').on('click', function () {
-        layer.confirm('确定退出登录?', {icon: 3, title:'提示'}, function(index){
+        layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function (index) {
             //do something
             // 1.清空本地存储中的token
             localStorage.removeItem('token')
-            location.href='/login.html'
+            location.href = '/login.html'
             // 关闭弹出框
             layer.close(index);
-          });
+        });
     })
 })
 
@@ -27,8 +27,9 @@ function getUserInfo() {
         success: function (res) {
             console.log(res);
             // 调用 renderAvatar 渲染用户的头像
+            if (res.status !== 0) return
             renderAvatar(res.data)
-        }
+        },
     })
 }
 
